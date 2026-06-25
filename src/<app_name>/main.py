@@ -1,10 +1,12 @@
 """
  A tkinter application for <app_title>.
 """
-
+import os
 import sys
 import argparse
 import tkinter as tk
+import clipboard
+from dotenv import load_dotenv
 
 from psiutils.widgets import get_styles
 from psiutils.utilities import display_icon
@@ -20,8 +22,12 @@ from <app_name> import logger
 
 ic_init()
 
-print('Have you run export UV_PYTHON=/usr/bin/python3 ?')
-print('export UV_PYTHON=/usr/bin/python3')
+load_dotenv()
+uv_python = os.getenv('UV_PYTHON')
+if not uv_python:
+    print((f"Have you run export UV_PYTHON=/usr/bin/python3?"
+           f" - copied to clipboard"))
+    clipboard.copy('export UV_PYTHON=/usr/bin/python3')
 
 
 def main() -> None:
