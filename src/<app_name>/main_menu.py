@@ -13,7 +13,7 @@ from <app_name> import (
     __summary__,
     __version__,
 )
-from <app_name>.constants import APP_TITLE, HELP_URI
+from <app_name>.constants import HELP_URI
 from <app_name>.config import config
 from <app_name>.text import Text
 
@@ -86,5 +86,5 @@ class MainMenu:
         )
         messagebox.showinfo(title=f"{txt.ABOUT} {__app_name__}", message=about)
 
-    def _dismiss(self, event: object = None):
+    def _dismiss(self, *args):
         self.root.destroy()

@@ -16,7 +16,7 @@ CONFIG_PATH = Path(user_config_dir(__app_name__, __author__), 'config.toml')
 USER_DATA_DIR = Path(user_data_dir(__app_name__, __author__))
 USER_DATA_DIR.mkdir(exist_ok=True)
 
-USER_DATA_FILE = Path(USER_DATA_DIR, 'data.json')
+USER_DATA_FILE = Path(USER_DATA_DIR, 'data.json')   
 
 # GUI
 APP_TITLE = '<app_title>'
