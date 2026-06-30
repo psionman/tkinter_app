@@ -10,7 +10,6 @@ from dotenv import load_dotenv
 
 from psiutils.widgets import get_styles
 from psiutils.utilities import display_icon
-from psiutils.icecream_init import ic_init
 
 from <app_name> import __version__, logger, __app_name__
 from <app_name>.constants import ICON_FILE, APP_TITLE

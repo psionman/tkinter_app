@@ -1,5 +1,8 @@
 # History
 
+## version 0.0.0a4 25 June 2026
+1. Tidy up extraneous code and files
+
 ## version 0.0.0a3 25 June 2026
 1. Revise pyproject.toml for ruff
 2. Remove settings.json - rely on default

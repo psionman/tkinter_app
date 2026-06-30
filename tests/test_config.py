@@ -4,7 +4,6 @@ from sudoku.config import read_config
 
 
 def test_config_no_directory(mocker):
-    # pylint: disable=no-member)
     mocker.patch(
         'sudoku.config.CONFIG_PATH',
         Path(
@@ -19,7 +18,6 @@ def test_config_no_directory(mocker):
 
 
 def test_config_save(mocker):
-    # pylint: disable=no-member)
     mocker.patch(
         'sudoku.config.CONFIG_PATH',
         Path(Path(__file__).parent, 'test_data', 'config', 'config.toml')

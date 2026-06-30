@@ -32,7 +32,6 @@ class ConfigFrame():
     my_bool: tk.BooleanVar
 
     def __init__(self, parent: tk.Frame) -> None:
-        # pylint: disable=no-member)
         self.root = tk.Toplevel(parent.root)
         self.parent = parent
         config = read_config()
@@ -70,7 +69,6 @@ class ConfigFrame():
         """
         Initialize and display the configuration form GUI.
         """
-        # pylint: disable=no-member)
         root = self.root
         root.geometry(self.config.geometry[Path(__file__).stem])
         root.transient(self.parent.root)

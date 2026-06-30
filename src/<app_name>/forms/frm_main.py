@@ -25,15 +25,14 @@ class AppFrame():
         self.config = read_config()
 
         # tk variables
-        self.xxx = tk.StringVar()
+        # self.xxx = tk.StringVar()
 
         # Trace
-        self.xxx.trace_add('write', self._value_changed)
+        # self.xxx.trace_add('write', self._value_changed)
 
         self._show()
 
     def _show(self):
-        # pylint: disable=no-member)
         root = self.root
         root.geometry(self.config.geometry[Path(__file__).stem])
         root.title(APP_TITLE)
@@ -62,7 +61,7 @@ class AppFrame():
     def _main_frame(self, master: tk.Frame) -> ttk.Frame:
         frame = ttk.Frame(master)
         # frame.rowconfigure(0, weight=1)
-        # frame.columnconfigure(1, weight=1)
+        # frame.columnconfigure(0, weight=1)
 
         return frame
 
@@ -85,9 +84,7 @@ class AppFrame():
         self.button_frame.enable(enable)
 
     def _process(self, *args) -> None:
-        # dlg = ReportFrame(self)
-        # self.root.wait_window(dlg.root)
-        ...
+        pass
 
     def _dismiss(self, *args) -> None:
         self.root.destroy()
