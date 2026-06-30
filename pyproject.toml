@@ -1,6 +1,6 @@
 [project]
 name = "<app_name>"
-version = "0.0.0a4"
+version = "0.0.0a5"
 description = "Add your description here"
 authors = [
     {name = "Jeff Watkins", email = "jeffwatkins2000@gmail.com"}

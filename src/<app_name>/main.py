@@ -19,8 +19,6 @@ from forms.frm_main import AppFrame
 
 from <app_name> import logger
 
-ic_init()
-
 load_dotenv()
 uv_python = os.getenv('UV_PYTHON')
 if not uv_python:

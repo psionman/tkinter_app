@@ -1,6 +1,9 @@
 # History
 
-## version 0.0.0a4 25 June 2026
+## version 0.0.0a5 30 June 2026
+1. Remove Icecream init
+
+## version 0.0.0a4 30 June 2026
 1. Tidy up extraneous code and files
 
 ## version 0.0.0a3 25 June 2026
