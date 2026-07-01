@@ -60,8 +60,8 @@ class AppFrame():
 
     def _main_frame(self, master: tk.Frame) -> ttk.Frame:
         frame = ttk.Frame(master)
-        # frame.rowconfigure(0, weight=1)
-        # frame.columnconfigure(0, weight=1)
+        frame.rowconfigure(0, weight=1)
+        frame.columnconfigure(0, weight=1)
 
         return frame
 

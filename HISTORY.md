@@ -1,5 +1,8 @@
 # History
 
+## version 0.0.0a6 1 July 2026
+1. Uncommentg configure on main_frame
+
 ## version 0.0.0a5 30 June 2026
 1. Remove Icecream init
 
