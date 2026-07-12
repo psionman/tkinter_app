@@ -9,7 +9,7 @@ from psiutils.constants import PAD
 from psiutils.utilities import window_resize
 
 from <app_name>.constants import APP_TITLE
-from <app_name>.config import read_config
+from <app_name>.config import config
 from <app_name>.text import Text
 from <app_name> import logger
 
@@ -34,8 +34,6 @@ class ConfigFrame():
     def __init__(self, parent: tk.Frame) -> None:
         self.root = tk.Toplevel(parent.root)
         self.parent = parent
-        config = read_config()
-        self.config = config
         self.dialog_opened = False
         self.save_button = None
 
@@ -70,7 +68,7 @@ class ConfigFrame():
         Initialize and display the configuration form GUI.
         """
         root = self.root
-        root.geometry(self.config.geometry[Path(__file__).stem])
+        root.geometry(config.geometry[Path(__file__).stem])
         root.transient(self.parent.root)
         root.title(f'{APP_TITLE} - {txt.CONFIG}')
 
@@ -90,7 +88,8 @@ class ConfigFrame():
         root.bind('<Control-x>', self._dismiss)
         root.bind('<Control-s>', self._save_config)
         root.bind("<FocusIn>", self._set_config)
-        root.bind("<Configure>", lambda e: window_resize(self, __file__))
+        root.bind(
+            "<Configure>", lambda e: window_resize(root, __file__), config)
 
     def _main_frame(self, master: tk.Frame) -> ttk.Frame:
         """
@@ -153,14 +152,14 @@ class ConfigFrame():
                    for field, change in self._config_changes().items()}
 
         for field in FIELDS:
-            self.config.update(field, getattr(self, field).get())
+            config.update(field, getattr(self, field).get())
 
         logger.info("Config saved", changes=changes)
         self.save_button.disable()
-        return self.config.save()
+        return config.save()
 
     def _config_changes(self) -> dict:
-        stored = self.config.config
+        stored = config.config
         return {
             field: (stored[field], getattr(self, field).get())
             for field in FIELDS
@@ -171,9 +170,9 @@ class ConfigFrame():
         if self.dialog_opened:
             self.dialog_opened = False
             return
-        self.config = read_config()
+        config = read_config()
         for field in FIELDS:
-            getattr(self, field).set(self.config.config[field])
+            getattr(self, field).set(config.config[field])
 
     def _dismiss(self, *args) -> None:
         """

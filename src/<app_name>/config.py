@@ -29,4 +29,5 @@ def save_config(updated_config: TomlConfig) -> TomlConfig | None:
     return TomlConfig(CONFIG_PATH)
 
 
+# Module-level singleton (TomlConfig) - this is the instance everyone imports.
 config = read_config()

@@ -8,7 +8,7 @@ from psiutils.buttons import ButtonFrame
 from psiutils.utilities import window_resize
 
 from <app_name>.constants import APP_TITLE, DEFAULT_GEOMETRY
-from <app_name>.config import read_config
+from <app_name>.config import config
 from <app_name>.text import Text
 
 txt = Text()
@@ -20,7 +20,6 @@ class xxxFrame():
     def __init__(self, parent: tk.Frame) -> None:
         self.root = tk.Toplevel(parent.root)
         self.parent = parent
-        self.config = read_config()
 
         # tk variables
 
@@ -29,7 +28,7 @@ class xxxFrame():
     def show(self) -> None:
         root = self.root
         try:
-            root.geometry(self.config.geometry[Path(__file__).stem])
+            root.geometry(config.geometry[Path(__file__).stem])
         except KeyError:
             root.geometry(DEFAULT_GEOMETRY)
         root.transient(self.parent.root)
@@ -49,7 +48,8 @@ class xxxFrame():
 
         self.root.update_idletasks()
         root.bind('<Control-x>', self._dismiss)
-        root.bind("<Configure>", lambda e: window_resize(self, __file__))
+        root.bind(
+            "<Configure>", lambda e: window_resize(root, __file__, config))
 
     def _main_frame(self, master: tk.Frame) -> ttk.Frame:
         frame = ttk.Frame(master)

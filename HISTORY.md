@@ -1,5 +1,9 @@
 # History
 
+## version 0.0.0a8 19 July 2026
+1. Remove self.config
+2. change window_resize parameters
+
 ## version 0.0.0a7 19 July 2026
 1. Move resize event asignment to after construction
 

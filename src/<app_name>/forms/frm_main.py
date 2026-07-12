@@ -9,7 +9,7 @@ from psiutils.buttons import ButtonFrame
 from psiutils.utilities import window_resize
 
 from <app_name>.constants import APP_TITLE
-from <app_name>.config import read_config
+from <app_name>.config import config
 from <app_name>.text import Text
 
 from <app_name>.main_menu import MainMenu
@@ -22,7 +22,6 @@ class AppFrame():
     """Create AppFrame for <app_title> application."""
     def __init__(self, root: tk.Tk) -> None:
         self.root = root
-        self.config = read_config()
 
         # tk variables
         # self.xxx = tk.StringVar()
@@ -34,7 +33,7 @@ class AppFrame():
 
     def _show(self):
         root = self.root
-        root.geometry(self.config.geometry[Path(__file__).stem])
+        root.geometry(config.geometry[Path(__file__).stem])
         root.title(APP_TITLE)
 
         main_menu = MainMenu(self)
@@ -53,10 +52,11 @@ class AppFrame():
         sizegrip = ttk.Sizegrip(root)
         sizegrip.grid(sticky=tk.SE)
 
-        self.root.update_idletasks()
+        root.update_idletasks()
         root.bind('<Control-x>', self._dismiss)
         root.bind('<Control-o>', self._process)
-        root.bind("<Configure>", lambda e: window_resize(self, __file__))
+        root.bind(
+            "<Configure>", lambda e: window_resize(root, __file__), config)
 
     def _main_frame(self, master: tk.Frame) -> ttk.Frame:
         frame = ttk.Frame(master)
@@ -79,7 +79,7 @@ class AppFrame():
         Determine whether any configuration value has changed.
         """
         enable = (
-            self.xxx.get() != self.config.xxx
+            self.xxx.get() != config.xxx
         )
         self.button_frame.enable(enable)
 
