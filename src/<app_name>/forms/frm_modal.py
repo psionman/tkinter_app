@@ -34,10 +34,6 @@ class xxxFrame():
             root.geometry(DEFAULT_GEOMETRY)
         root.transient(self.parent.root)
         root.title(FRAME_TITLE)
-        root.bind('<Configure>',
-                  lambda event, arg=None: window_resize(self, __file__))
-
-        root.bind('<Control-x>', self._dismiss)
 
         root.rowconfigure(0, weight=1)
         root.columnconfigure(0, weight=1)
@@ -50,6 +46,10 @@ class xxxFrame():
 
         sizegrip = ttk.Sizegrip(root)
         sizegrip.grid(sticky=tk.SE)
+
+        self.root.update_idletasks()
+        root.bind('<Control-x>', self._dismiss)
+        root.bind("<Configure>", lambda e: window_resize(self, __file__))
 
     def _main_frame(self, master: tk.Frame) -> ttk.Frame:
         frame = ttk.Frame(master)

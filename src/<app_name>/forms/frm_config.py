@@ -74,12 +74,6 @@ class ConfigFrame():
         root.transient(self.parent.root)
         root.title(f'{APP_TITLE} - {txt.CONFIG}')
 
-        root.bind('<Control-x>', self._dismiss)
-        root.bind('<Control-s>', self._save_config)
-        root.bind('<Configure>',
-                  lambda event, arg=None: window_resize(self, __file__))
-        root.bind("<FocusIn>", self._set_config)
-
         root.rowconfigure(1, weight=1)
         root.columnconfigure(0, weight=1)
 
@@ -91,6 +85,12 @@ class ConfigFrame():
 
         sizegrip = ttk.Sizegrip(root)
         sizegrip.grid(sticky=tk.SE)
+
+        self.root.update_idletasks()
+        root.bind('<Control-x>', self._dismiss)
+        root.bind('<Control-s>', self._save_config)
+        root.bind("<FocusIn>", self._set_config)
+        root.bind("<Configure>", lambda e: window_resize(self, __file__))
 
     def _main_frame(self, master: tk.Frame) -> ttk.Frame:
         """

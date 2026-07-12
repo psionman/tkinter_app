@@ -1,5 +1,8 @@
 # History
 
+## version 0.0.0a7 19 July 2026
+1. Move resize event asignment to after construction
+
 ## version 0.0.0a6 1 July 2026
 1. Uncommentg configure on main_frame
 

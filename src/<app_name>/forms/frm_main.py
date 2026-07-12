@@ -37,11 +37,6 @@ class AppFrame():
         root.geometry(self.config.geometry[Path(__file__).stem])
         root.title(APP_TITLE)
 
-        root.bind('<Control-x>', self._dismiss)
-        root.bind('<Control-o>', self._process)
-        root.bind('<Configure>',
-                  lambda event, arg=None: window_resize(self, __file__))
-
         main_menu = MainMenu(self)
         main_menu.create()
 
@@ -57,6 +52,11 @@ class AppFrame():
 
         sizegrip = ttk.Sizegrip(root)
         sizegrip.grid(sticky=tk.SE)
+
+        self.root.update_idletasks()
+        root.bind('<Control-x>', self._dismiss)
+        root.bind('<Control-o>', self._process)
+        root.bind("<Configure>", lambda e: window_resize(self, __file__))
 
     def _main_frame(self, master: tk.Frame) -> ttk.Frame:
         frame = ttk.Frame(master)
