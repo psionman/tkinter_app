@@ -1,17 +1,19 @@
+# forms/frm_config.py
+
 """ConfigFrame for <app_title>."""
 
 import tkinter as tk
-from tkinter import ttk, filedialog
 from pathlib import Path
+from tkinter import ttk, filedialog
 
 from psiutils.buttons import ButtonFrame, IconButton
 from psiutils.constants import PAD
 from psiutils.utilities import window_resize
 
-from <app_name>.constants import APP_TITLE
 from <app_name>.config import config
-from <app_name>.text import Text
+from <app_name>.constants import APP_TITLE
 from <app_name> import logger
+from <app_name>.text import Text
 
 txt = Text()
 

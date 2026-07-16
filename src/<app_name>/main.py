@@ -1,3 +1,5 @@
+# main.py
+
 """
  A tkinter application for <app_title>.
 """

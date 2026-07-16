@@ -1,7 +1,8 @@
+# module_caller.py
 """Module caller for <app_title>."""
 
-from <app_name>.forms.frm_main import AppFrame
 from <app_name>.forms.frm_config import ConfigFrame
+from <app_name>.forms.frm_main import AppFrame
 
 
 class ModuleCaller():

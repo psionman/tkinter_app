@@ -1,3 +1,5 @@
+# constants.py
+
 """Constants for <app_title>."""
 from pathlib import Path
 from appdirs import user_config_dir, user_data_dir

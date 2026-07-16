@@ -1,19 +1,19 @@
+# forms/frm_main.py
 
 """AppFrame for <app_title>."""
 import tkinter as tk
-from tkinter import ttk
 from pathlib import Path
+from tkinter import ttk
 
-from psiutils.constants import PAD
 from psiutils.buttons import ButtonFrame
+from psiutils.constants import PAD
 from psiutils.utilities import window_resize
 
-from <app_name>.constants import APP_TITLE
 from <app_name>.config import config
+from <app_name>.constants import APP_TITLE
 from <app_name>.text import Text
 
 from <app_name>.main_menu import MainMenu
-# from <app_name>.forms.frm
 
 txt = Text()
 

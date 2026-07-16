@@ -1,3 +1,5 @@
+# main_menu.py
+
 """Main menu for <app_title>."""
 
 import tkinter as tk

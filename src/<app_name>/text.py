@@ -1,3 +1,5 @@
+#  text.py
+
 """
 Text module that merges psiutils.text.strings with project-level strings.
 
@@ -10,6 +12,7 @@ Usage:
 """
 
 from dataclasses import dataclass, field
+
 from psiutils.text import Text as PsiText
 
 strings = {

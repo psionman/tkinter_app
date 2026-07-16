@@ -1,10 +1,14 @@
 # History
 
-## version 0.0.0a8 19 July 2026
+## version 0.0.0a9 16 July 2026
+1. Insert file names
+2. Delete superfluous files
+
+## version 0.0.0a8 9 July 2026
 1. Remove self.config
 2. change window_resize parameters
 
-## version 0.0.0a7 19 July 2026
+## version 0.0.0a7 9 July 2026
 1. Move resize event asignment to after construction
 
 ## version 0.0.0a6 1 July 2026

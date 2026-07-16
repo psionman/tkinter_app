@@ -1,14 +1,17 @@
-"""xxxFrame for <app_title>."""
-import tkinter as tk
-from tkinter import ttk
-from pathlib import Path
+# forms/frm_xxx.py
 
-from psiutils.constants import PAD
+"""xxxFrame for <app_title>."""
+
+import tkinter as tk
+from pathlib import Path
+from tkinter import ttk
+
 from psiutils.buttons import ButtonFrame
+from psiutils.constants import PAD
 from psiutils.utilities import window_resize
 
-from <app_name>.constants import APP_TITLE, DEFAULT_GEOMETRY
 from <app_name>.config import config
+from <app_name>.constants import APP_TITLE, DEFAULT_GEOMETRY
 from <app_name>.text import Text
 
 txt = Text()
@@ -19,7 +22,6 @@ FRAME_TITLE = f'{APP_TITLE} - <title>'
 class xxxFrame():
     def __init__(self, parent: tk.Frame) -> None:
         self.root = tk.Toplevel(parent.root)
-        self.parent = parent
 
         # tk variables
 
@@ -31,20 +33,23 @@ class xxxFrame():
             root.geometry(config.geometry[Path(__file__).stem])
         except KeyError:
             root.geometry(DEFAULT_GEOMETRY)
-        root.transient(self.parent.root)
         root.title(FRAME_TITLE)
 
         root.rowconfigure(0, weight=1)
         root.columnconfigure(0, weight=1)
 
+        row = 0
         main_frame = self._main_frame(root)
-        main_frame.grid(row=0, column=0, sticky=tk.NSEW, padx=PAD, pady=PAD)
+        main_frame.grid(row=row, column=0, sticky=tk.NSEW, padx=PAD, pady=PAD)
+
+        row += 1
         self.button_frame = self._button_frame(root)
-        self.button_frame.grid(row=8, column=0, columnspan=9,
-                               sticky=tk.EW, padx=PAD, pady=PAD)
+        self.button_frame.grid(
+            row=row, column=0, columnspan=9, sticky=tk.EW, padx=PAD, pady=PAD
+        )
 
         sizegrip = ttk.Sizegrip(root)
-        sizegrip.grid(sticky=tk.SE)
+        sizegrip.grid(column=0, sticky=tk.SE)
 
         self.root.update_idletasks()
         root.bind('<Control-x>', self._dismiss)
@@ -68,7 +73,7 @@ class xxxFrame():
         return frame
 
     def _process(self, *args) -> None:
-        ...
+        pass
 
     def _dismiss(self, *args) -> None:
         self.root.destroy()

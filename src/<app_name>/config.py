@@ -1,3 +1,5 @@
+# config.py
+
 """Config for <app_title>."""
 
 from psiconfig import TomlConfig
