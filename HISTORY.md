@@ -1,4 +1,6 @@
 # History
+## version 0.0.0a11 25 August 2026
+1. Add justfile for development
 
 ## version 0.0.0a10 25 August 2026
 1. Bug on frm_main resize
