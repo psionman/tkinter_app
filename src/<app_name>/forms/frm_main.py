@@ -56,7 +56,9 @@ class AppFrame():
         root.bind('<Control-x>', self._dismiss)
         root.bind('<Control-o>', self._process)
         root.bind(
-            "<Configure>", lambda e: window_resize(root, __file__), config)
+            "<Configure>",
+            lambda e: window_resize(root, __file__, config),
+        )
 
     def _main_frame(self, master: tk.Frame) -> ttk.Frame:
         frame = ttk.Frame(master)

@@ -1,5 +1,9 @@
 # History
 
+## version 0.0.0a10 25 August 2026
+1. Bug on frm_main resize
+2. Readme update
+
 ## version 0.0.0a9 16 July 2026
 1. Insert file names
 2. Delete superfluous files
