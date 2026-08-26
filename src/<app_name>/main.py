@@ -24,8 +24,8 @@ from <app_name> import logger
 load_dotenv()
 uv_python = os.getenv('UV_PYTHON')
 if not uv_python:
-    print((f"Have you run export UV_PYTHON=/usr/bin/python3?"
-           f" - copied to clipboard"))
+    print(f"Have you run export UV_PYTHON=/usr/bin/python3?"
+           f" - copied to clipboard")
     clipboard.copy('export UV_PYTHON=/usr/bin/python3')
 
 
@@ -33,6 +33,12 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=APP_TITLE)
     parser.add_argument(
         "module", nargs="?", default=None, help="Module to load")
+    parser.add_argument(
+        "primary", nargs="?", default=None, help="Primary argument"
+    )
+    parser.add_argument(
+        "secondary", nargs="?", default=None, help="Secondary argument"
+    )
     args = parser.parse_args()
 
     root = tk.Tk()
@@ -45,7 +51,7 @@ def main() -> None:
 
     if args.module:
         try:
-            dlg = ModuleCaller(root, args.module)
+            dlg = ModuleCaller(root, args.module, args)
             if dlg.invalid:
                 logger.error(f"Invalid module", module=args.module)
                 AppFrame(root)

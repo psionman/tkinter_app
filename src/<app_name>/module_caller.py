@@ -2,84 +2,57 @@
 """Module caller for <app_title>."""
 
 from <app_name>.forms.frm_config import ConfigFrame
-from <app_name>.forms.frm_main import AppFrame
 
 
-class ModuleCaller():
-    """
-    Handles the invocation of specific module dialogs in a GUI application.
+class ModuleCaller:
+    def __init__(self, root, parsed_args: dict) -> None:
+        self.args = parsed_args
+        self.modules = {
+            "list": (self._list, "List module definitions"),
+            "config": (self._config, None),
+        }
 
-    Initialized with a root window and the name of a module to call. Maps
-    the module name to a corresponding method, invokes it, and manages the
-    GUI dialog lifecycle (e.g., waiting for it to close, destroying the root).
+        if self._select_module():
+            self.root = root
+            self.root.after(100, self._run_module)
+        else:
+            root.destroy()
 
-    Parameters:
-        root (tk.Tk or similar): The root window for the GUI.
-        module (str): The name of the module or command to invoke.
+    def _select_module(self) -> bool:
+        """Return True if a valid, runnable module was selected."""
+        module = self.args.module
+        if module in ("list", None) or module not in self.modules:
+            if module not in ("list", None):
+                print(f"*** Invalid function name: {module} ***")
+            self._list()
+            return False
+        return True
 
-    Behaviour:
-        - If 'module' is '-h', lists available modules and exits.
-        - If 'module' is unrecognized, prints an error and sets `invalid` to
-          True.
-        - If 'module' is valid, runs the corresponding dialog method.
-        - Destroys the root window after handling the module (unless invalid).
-
-    Attributes:
-        invalid (bool): Set to True if the module was invalid or help was
-        requested.
-
-    Supported Modules:
-        - config: Opens the ConfigFrame dialog.
-        - main: No action, but included for completeness.
-        """
-    def __init__(self, root, module) -> None:
-        """
-        Initialise ModuleCaller to invoke a specified module function.
-
-        If the module argument is '-h', lists all available modules including
-        'main' and marks the instance as invalid.
-
-        If the module name is invalid (not recognised or not 'main'),
-        marks the instance as invalid.
-
-        Otherwise, calls the requested module method, then destroys the root
-        window. The 'main' argument is treated slightly differently.
-
-        Args:
-            root: The root Tkinter window or parent widget.
-            module: The module name or command to execute.
-        """
-        modules = {
-            'main': self._main,
-            'config': self._config,
-            }
-
-        if module == '-h':
-            for key in sorted(list(modules.keys())+['main']):
-                print(key)
-            self.invalid = True
-            return
-
-        if module not in modules and module != 'main':
-            self.invalid = True
-            return
-
-        self.invalid = False
-        self.root = root
-        modules[module]()
-        if module != 'main':
+    def _run_module(self) -> None:
+        try:
+            self.modules[self.args.module][0]()
+        except ValueError as e:
+            print(f"Error running module: {e}")
+        finally:
             self.root.destroy()
-        return
 
-    def _main(self) -> None:
-        """
-        Open the main frame and wait until it is closed.
-        """
-        AppFrame(self.root)
+    def _require(self, attr: str, message: str) -> str:
+        """Return the named CLI arg, or raise ValueError if missing."""
+        value = getattr(self.args, attr)
+        if not value:
+            raise ValueError(message)
+        return value
+
+    def _list(self) -> None:
+        keys = sorted(self.modules.keys())
+        padding = max(len(key) for key in keys)
+        for key in keys:
+            _, help_text = self.modules[key]
+            if help_text:
+                print(f"{key:.<{padding}} {help_text}")
+            else:
+                print(key)
 
     def _config(self) -> None:
-        """
-        Open the configuration dialog and wait until it is closed.
-        """
         dlg = ConfigFrame(self)
         self.root.wait_window(dlg.root)

@@ -1,4 +1,9 @@
 # History
+
+## version 0.0.0a12 26 August 2026
+1. Fix bugs in frm_config
+2. New module caller
+
 ## version 0.0.0a11 25 August 2026
 1. Add justfile for development
 

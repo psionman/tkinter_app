@@ -19,8 +19,8 @@ txt = Text()
 
 FIELDS = {
     "data_directory": tk.StringVar,
-    "my_int": tk.IntVar,
-    "my_bool": tk.BooleanVar,
+    # "my_int": tk.IntVar,
+    # "my_bool": tk.BooleanVar,
 }
 
 
@@ -91,7 +91,7 @@ class ConfigFrame():
         root.bind('<Control-s>', self._save_config)
         root.bind("<FocusIn>", self._set_config)
         root.bind(
-            "<Configure>", lambda e: window_resize(root, __file__), config)
+            "<Configure>", lambda e: window_resize(root, __file__, config))
 
     def _main_frame(self, master: tk.Frame) -> ttk.Frame:
         """
@@ -172,7 +172,7 @@ class ConfigFrame():
         if self.dialog_opened:
             self.dialog_opened = False
             return
-        config = read_config()
+        
         for field in FIELDS:
             getattr(self, field).set(config.config[field])
 
