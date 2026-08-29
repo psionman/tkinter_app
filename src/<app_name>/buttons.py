@@ -1,10 +1,11 @@
 # buttons.py
+import os
 import tkinter as tk
 
+from dotenv import load_dotenv
 from psiutils.buttons import ButtonFrame as ButtonFrameBase
 
-ICON_BUTTON_PATH = "/home/jeff/.config/icon_buttons/buttons.json"
-ICON_PATH = "/home/jeff/.local/share/psi_icons/"
+load_dotenv()
 
 
 class ButtonFrame(ButtonFrameBase):
@@ -12,8 +13,8 @@ class ButtonFrame(ButtonFrameBase):
         self,
         master: tk.Frame,
         orientation: str = tk.HORIZONTAL,
-        button_config_path: str = ICON_BUTTON_PATH,
-        icon_path: str = ICON_PATH,
+        button_config_path: str = os.getenv("ICON_BUTTON_CONFIG_PATH"),
+        icon_path: str = os.getenv("ICON_IMAGE_PATH"),
         **kwargs: dict,
     ):
         super().__init__(

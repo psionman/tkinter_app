@@ -1,5 +1,8 @@
 # History
 
+## version 0.0.0a17 29 August 2026
+1. Add dotenv for environment variables
+
 ## version 0.0.0a16 29 August 2026
 1. Implement ButtonFrame locally for icon system
 2. tidy main.py for module caller
