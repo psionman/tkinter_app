@@ -9,11 +9,12 @@ from psiutils.buttons import ButtonFrame
 from psiutils.constants import PAD
 from psiutils.utilities import window_resize
 
+from <app_name>.buttons import ButtonFrame
 from <app_name>.config import config
 from <app_name>.constants import APP_TITLE
+from <app_name>.main_menu import MainMenu
 from <app_name>.text import Text
 
-from <app_name>.main_menu import MainMenu
 
 txt = Text()
 
@@ -69,12 +70,15 @@ class AppFrame():
 
     def _button_frame(self, master: tk.Frame) -> tk.Frame:
         frame = ButtonFrame(master, tk.HORIZONTAL)
-        frame.buttons = [
-            frame.icon_button('build', self._process, True),
-            frame.icon_button('close', self._dismiss),
-        ]
+        frame.buttons = self._frame_buttons(frame)
         frame.enable(False)
         return frame
+
+    def _frame_buttons(self, frame: ButtonFrame) -> list[IconButton]:
+        return [
+            frame.icon_button("build", self._process),
+            frame.icon_button("cancel-red", self._dismiss),
+        ]
 
     def _value_changed(self) -> bool:
         """

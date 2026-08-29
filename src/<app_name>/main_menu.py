@@ -3,11 +3,10 @@
 """Main menu for <app_title>."""
 
 import tkinter as tk
-from tkinter import messagebox
 import webbrowser
+from tkinter import messagebox
 
 from psiutils.menus import Menu, MenuItem
-MenuItem
 
 from <app_name> import (
     __app_name__,
@@ -15,11 +14,10 @@ from <app_name> import (
     __summary__,
     __version__,
 )
-from <app_name>.constants import HELP_URI
 from <app_name>.config import config
-from <app_name>.text import Text
-
+from <app_name>.constants import HELP_URI
 from <app_name>.forms.frm_config import ConfigFrame
+from <app_name>.text import Text
 
 txt = Text()
 

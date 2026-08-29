@@ -10,9 +10,10 @@ from psiutils.buttons import ButtonFrame, IconButton
 from psiutils.constants import PAD
 from psiutils.utilities import window_resize
 
+from <app_name> import logger
+from <app_name>.buttons import ButtonFrame
 from <app_name>.config import config
 from <app_name>.constants import APP_TITLE
-from <app_name> import logger
 from <app_name>.text import Text
 
 txt = Text()
@@ -118,14 +119,16 @@ class ConfigFrame():
         Create and return the button frame for the form.
         """
         frame = ButtonFrame(master, tk.HORIZONTAL)
-        self.save_button = IconButton(
-            frame, txt.SAVE, 'save', self._save_config, True)
-        frame.buttons = [
-            self.save_button,
-            frame.icon_button('exit', self._dismiss),
-        ]
+        frame.buttons = self._frame_buttons(frame)
+        self.save_button = frame.get_button("save")
         frame.enable(False)
         return frame
+
+    def _frame_buttons(self, frame: ButtonFrame) -> list[IconButton]:
+        return [
+            frame.icon_button("save", self._save_config, True, tag="save"),
+            frame.icon_button("exit", self._dismiss),
+        ]
 
     def _check_value_changed(self, *args) -> bool:
         """

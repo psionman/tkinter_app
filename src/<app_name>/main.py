@@ -29,18 +29,13 @@ if not uv_python:
     clipboard.copy('export UV_PYTHON=/usr/bin/python3')
 
 
-def main() -> None:
-    parser = argparse.ArgumentParser(description=APP_TITLE)
-    parser.add_argument(
-        "module", nargs="?", default=None, help="Module to load")
-    parser.add_argument(
-        "primary", nargs="?", default=None, help="Primary argument"
-    )
-    parser.add_argument(
-        "secondary", nargs="?", default=None, help="Secondary argument"
-    )
-    args = parser.parse_args()
+PARSER_ARGS = (
+    ("module", "Module to load"),
+    ("project", "Project name"),
+    ("secondary", "Secondary argument"),
+)
 
+def main() -> None:
     root = tk.Tk()
     root.title(APP_TITLE)
     display_icon(root, ICON_FILE, ignore_error=True)
@@ -49,17 +44,15 @@ def main() -> None:
 
     get_styles()
 
-    if args.module:
-        try:
-            dlg = ModuleCaller(root, args.module, args)
-            if dlg.invalid:
-                logger.error(f"Invalid module", module=args.module)
-                AppFrame(root)
-        except Exception as e:
-            logger.error(f"Failed to load module '{args.module}'", error=e)
+    if PARSER_ARGS:
+        args = ModuleCaller.create_parser(PARSER_ARGS)
+        if args.module:
+            try:
+                ModuleCaller(root, args)
+            except Exception:
+                root.destroy()
+        else:
             AppFrame(root)
-    else:
-        AppFrame(root)
 
     root.mainloop()
 
