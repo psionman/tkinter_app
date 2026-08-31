@@ -16,11 +16,6 @@ from dataclasses import dataclass, field
 from psiutils.text import Text as PsiText
 
 strings = {
-    "ABOUT": "About",
-    "AUTHOR": "Author",
-    "DATA_DIRECTORY": "Data directory",
-    "ONLINE_HELP": "Online help",
-    "VERSION": " Version",
 }
 
 

@@ -51,7 +51,7 @@ class AppFrame():
                                sticky=tk.EW, padx=PAD, pady=PAD)
 
         sizegrip = ttk.Sizegrip(root)
-        sizegrip.grid(sticky=tk.SE)
+        sizegrip.grid(column=0, sticky=tk.SE)
 
         root.update_idletasks()
         root.bind('<Control-x>', self._dismiss)
@@ -80,7 +80,7 @@ class AppFrame():
             frame.icon_button("cancel-red", self._dismiss),
         ]
 
-    def _value_changed(self) -> bool:
+    def _value_changed(self, *args) -> bool:
         """
         Determine whether any configuration value has changed.
         """

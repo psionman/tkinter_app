@@ -1,5 +1,10 @@
 # History
 
+## Version 0.0.0a18 31 August 2026
+1. Make config frame modal
+2. Remove redundant txt items
+3. Add - to _ conversion in justfile
+
 ## version 0.0.0a17 29 August 2026
 1. Add dotenv for environment variables
 

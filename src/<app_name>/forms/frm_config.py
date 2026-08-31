@@ -1,12 +1,11 @@
 # forms/frm_config.py
-
-"""ConfigFrame for <app_title>."""
+"""ConfigFrame for <app_title>.."""
 
 import tkinter as tk
 from pathlib import Path
-from tkinter import ttk, filedialog
+from tkinter import filedialog, ttk
 
-from psiutils.buttons import ButtonFrame, IconButton
+from psiutils.buttons import IconButton
 from psiutils.constants import PAD
 from psiutils.utilities import window_resize
 
@@ -25,7 +24,7 @@ FIELDS = {
 }
 
 
-class ConfigFrame():
+class ConfigFrame:
     """
     A configuration dialog for editing application settings.
     """
@@ -53,17 +52,17 @@ class ConfigFrame():
 
     def _stringvar(self, value: str) -> tk.StringVar:
         stringvar = tk.StringVar(value=value)
-        stringvar.trace_add('write', self._check_value_changed)
+        stringvar.trace_add("write", self._check_value_changed)
         return stringvar
 
     def _intvar(self, value: int) -> tk.IntVar:
         intvar = tk.IntVar(value=value)
-        intvar.trace_add('write', self._check_value_changed)
+        intvar.trace_add("write", self._check_value_changed)
         return intvar
 
     def _boolvar(self, value: bool) -> tk.BooleanVar:
         boolvar = tk.BooleanVar(value=value)
-        boolvar.trace_add('write', self._check_value_changed)
+        boolvar.trace_add("write", self._check_value_changed)
         return boolvar
 
     def _show(self) -> None:
@@ -73,7 +72,16 @@ class ConfigFrame():
         root = self.root
         root.geometry(config.geometry[Path(__file__).stem])
         root.transient(self.parent.root)
-        root.title(f'{APP_TITLE} - {txt.CONFIG}')
+        root.title(f"{APP_TITLE} - {txt.CONFIG}")
+
+        root.bind("<Control-x>", self._dismiss)
+        root.bind("<Control-s>", self._save_config)
+        root.bind(
+            "<Configure>",
+            lambda e: window_resize(root, __file__, config),
+        )
+
+        root.bind("<FocusIn>", self._set_config)
 
         root.rowconfigure(1, weight=1)
         root.columnconfigure(0, weight=1)
@@ -81,18 +89,12 @@ class ConfigFrame():
         main_frame = self._main_frame(root)
         main_frame.grid(row=0, column=0, sticky=tk.NSEW, padx=PAD, pady=PAD)
         self.button_frame = self._button_frame(root)
-        self.button_frame.grid(row=8, column=0, columnspan=9,
-                               sticky=tk.EW, padx=PAD, pady=PAD)
+        self.button_frame.grid(
+            row=8, column=0, columnspan=9, sticky=tk.EW, padx=PAD, pady=PAD
+        )
 
         sizegrip = ttk.Sizegrip(root)
         sizegrip.grid(sticky=tk.SE)
-
-        self.root.update_idletasks()
-        root.bind('<Control-x>', self._dismiss)
-        root.bind('<Control-s>', self._save_config)
-        root.bind("<FocusIn>", self._set_config)
-        root.bind(
-            "<Configure>", lambda e: window_resize(root, __file__, config))
 
     def _main_frame(self, master: tk.Frame) -> ttk.Frame:
         """
@@ -102,22 +104,18 @@ class ConfigFrame():
         frame.columnconfigure(1, weight=1)
 
         row = 0
-        label = ttk.Label(frame, text='label text')
+        label = ttk.Label(frame, text="Data directory")
         label.grid(row=row, column=0, sticky=tk.E, padx=PAD, pady=PAD)
 
         entry = ttk.Entry(frame, textvariable=self.data_directory)
         entry.grid(row=row, column=1, sticky=tk.EW)
 
-        button = IconButton(
-            frame, txt.OPEN, 'open', self._get_data_directory)
+        button = IconButton(frame, txt.OPEN, "open", self._get_data_directory)
         button.grid(row=row, column=2, padx=PAD)
 
         return frame
 
     def _button_frame(self, master: tk.Frame) -> tk.Frame:
-        """
-        Create and return the button frame for the form.
-        """
         frame = ButtonFrame(master, tk.HORIZONTAL)
         frame.buttons = self._frame_buttons(frame)
         self.save_button = frame.get_button("save")
@@ -153,8 +151,10 @@ class ConfigFrame():
         )
 
     def _save_config(self):
-        changes = {field: f'(old value={change[0]}, new_value={change[1]})'
-                   for field, change in self._config_changes().items()}
+        changes = {
+            field: f"(old value={change[0]}, new_value={change[1]})"
+            for field, change in self._config_changes().items()
+        }
 
         for field in FIELDS:
             config.update(field, getattr(self, field).get())
@@ -175,7 +175,6 @@ class ConfigFrame():
         if self.dialog_opened:
             self.dialog_opened = False
             return
-        
         for field in FIELDS:
             getattr(self, field).set(config.config[field])
 
@@ -183,4 +182,5 @@ class ConfigFrame():
         """
         Close the configuration window and terminate the application.
         """
+        self.root.grab_release()
         self.root.destroy()
