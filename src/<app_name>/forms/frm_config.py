@@ -11,17 +11,11 @@ from psiutils.utilities import window_resize
 
 from <app_name> import logger
 from <app_name>.buttons import ButtonFrame
-from <app_name>.config import config
+from <app_name>.config import config, FIELDS
 from <app_name>.constants import APP_TITLE
 from <app_name>.text import Text
 
 txt = Text()
-
-FIELDS = {
-    "data_directory": tk.StringVar,
-    # "my_int": tk.IntVar,
-    # "my_bool": tk.BooleanVar,
-}
 
 
 class ConfigFrame:
@@ -40,13 +34,13 @@ class ConfigFrame:
         self.save_button = None
 
         # tk variables and trace
-        for field, f_type in FIELDS.items():
-            if f_type is tk.StringVar:
+        for field, field_info in FIELDS.items():
+            if field_info.type is tk.StringVar:
                 setattr(self, field, self._stringvar(getattr(config, field)))
-            elif f_type is tk.IntVar:
+            elif field_info.type is tk.IntVar:
                 setattr(self, field, self._intvar(getattr(config, field)))
-            elif f_type is tk.BooleanVar:
-                setattr(self, field, self._boolvar(getattr(config, field)))
+            elif field_info.type is tk.BooleanVar:
+                setattr(self, field, self._boolvar(getattr(config, field))
 
         self._show()
 
@@ -161,7 +155,7 @@ class ConfigFrame:
 
         logger.info("Config saved", changes=changes)
         self.save_button.disable()
-        return config.save()
+        self._dismiss()
 
     def _config_changes(self) -> dict:
         stored = config.config

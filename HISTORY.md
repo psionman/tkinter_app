@@ -1,5 +1,8 @@
 # History
 
+## Version 0.0.0a19 3 September 2026
+1. Add config field system
+
 ## Version 0.0.0a18 31 August 2026
 1. Make config frame modal
 2. Remove redundant txt items

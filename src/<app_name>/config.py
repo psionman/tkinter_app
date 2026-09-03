@@ -2,18 +2,35 @@
 
 """Config for <app_title>."""
 
+import tkinter as tk
+from dataclasses import dataclass
+
 from psiconfig import TomlConfig
 
 from <app_name>.constants import CONFIG_PATH, USER_DATA_DIR
 
-DEFAULT_CONFIG = {
-    'data_directory': USER_DATA_DIR,
-    'geometry': {
-        'frm_main': '500x600',
-        'frm_config': '700x300',
-    },
+
+@dataclass
+class ConfigField:
+    type: type
+    default_value: any
+
+
+FIELDS = {
+    "data_directory": ConfigField(tk.StringVar, USER_DATA_DIR),
 }
 
+DEFAULT_GEOMETRY = {
+    "frm_main": "500x600",
+    "frm_config": "700x300",
+}
+
+DEFAULT_CONFIG = {
+    "geometry": DEFAULT_GEOMETRY,
+}
+
+for name, field in FIELDS.items():
+    DEFAULT_CONFIG[name] = field.default_value
 
 def read_config(restore_defaults: bool = False) -> TomlConfig:
     """Return the config file."""
