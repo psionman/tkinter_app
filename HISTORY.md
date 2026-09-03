@@ -1,5 +1,8 @@
 # History
 
+## Version 0.0.0a20 3 September 2026
+1. Use psiconfig to generate frm_config tk_variables
+
 ## Version 0.0.0a19 3 September 2026
 1. Add config field system
 

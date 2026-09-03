@@ -10,34 +10,30 @@ from psiconfig import TomlConfig
 from <app_name>.constants import CONFIG_PATH, USER_DATA_DIR
 
 
-@dataclass
-class ConfigField:
-    type: type
-    default_value: any
-
-
+# FIELDS for config, and to create tkinter variables in frm_config.py
+# e.g. self.data_directory is a tk.StringVar
 FIELDS = {
-    "data_directory": ConfigField(tk.StringVar, USER_DATA_DIR),
-}
-
-DEFAULT_GEOMETRY = {
-    "frm_main": "500x600",
-    "frm_config": "700x300",
+    "data_directory": ConfigField(str, USER_DATA_DIR),
 }
 
 DEFAULT_CONFIG = {
-    "geometry": DEFAULT_GEOMETRY,
+    "geometry": {
+        "frm_main": "500x600",
+        "frm_config": "700x300",
+    },
 }
 
 for name, field in FIELDS.items():
     DEFAULT_CONFIG[name] = field.default_value
+
 
 def read_config(restore_defaults: bool = False) -> TomlConfig:
     """Return the config file."""
     return TomlConfig(
         path=CONFIG_PATH,
         defaults=DEFAULT_CONFIG,
-        restore_defaults=restore_defaults)
+        restore_defaults=restore_defaults,
+    )
 
 
 def save_config(updated_config: TomlConfig) -> TomlConfig | None:
