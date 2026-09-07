@@ -5,7 +5,6 @@ import tkinter as tk
 from pathlib import Path
 from tkinter import ttk
 
-from psiutils.buttons import ButtonFrame
 from psiutils.constants import PAD
 from psiutils.utilities import window_resize
 
