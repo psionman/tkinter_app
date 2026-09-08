@@ -1,5 +1,8 @@
 # History
 
+## Version 0.0.0a23 8 September 2026
+1. Fix omissions and inconsistencies
+
 ## Version 0.0.0a22 8 September 2026
 1. Align psiutils 2.0.0
 

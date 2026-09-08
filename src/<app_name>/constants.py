@@ -27,6 +27,13 @@ USER_DATA_FILE = "data.json"
 HOME = str(Path.home())
 ICON_DIR = f"{Path(__file__).parent}/icons/"
 
+# Buttons and text
+PSIUTILS_DIR = user_data_dir("psiutils", __author__)
+BUTTONS_DIR = Path(PSIUTILS_DIR, "buttons")
+BUTTON_ICON_PATH = str(Path(BUTTONS_DIR, "icons"))
+BUTTON_CONFIG_PATH = str(Path(BUTTONS_DIR, "buttons.json"))
+TEXT_FILE = Path(PSIUTILS_DIR, "text", "text.json")
+
 # GUI
 APP_TITLE = '<app_title>'
 ICON_FILE = Path(Path(__file__).parent, 'images', 'icon.png')

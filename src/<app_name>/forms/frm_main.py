@@ -8,7 +8,7 @@ from tkinter import ttk
 from psiutils.constants import PAD
 from psiutils.utilities import window_resize
 
-from <app_name>.buttons import ButtonFrame
+from <app_name>.buttons import ButtonFrame, IconButton
 from <app_name>.config import config
 from <app_name>.constants import APP_TITLE
 from <app_name>.main_menu import MainMenu
@@ -77,7 +77,7 @@ class AppFrame():
     def _frame_buttons(self, frame: ButtonFrame) -> list[IconButton]:
         return [
             frame.icon_button("build", self._process),
-            frame.icon_button("cancel-red", self._dismiss),
+            frame.icon_button("cancel", self._dismiss),
         ]
 
     def _value_changed(self, *args) -> bool:
