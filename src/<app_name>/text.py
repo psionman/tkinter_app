@@ -1,5 +1,4 @@
-#  text.py
-
+# text.py
 """
 Text module that merges psiutils.text.strings with project-level strings.
 
@@ -15,8 +14,9 @@ from dataclasses import dataclass, field
 
 from psiutils.text import Text as PsiText
 
-strings = {
-}
+from .constants import TEXT_FILE
+
+strings = {}
 
 
 @dataclass
@@ -32,7 +32,7 @@ class Text:
     def __post_init__(self) -> None:
         """Populate the dataclass instance with string attributes."""
         # Load psiutils strings
-        psi_text = PsiText()
+        psi_text = PsiText(TEXT_FILE)
         psi_strings = psi_text.strings
         for key, string in psi_strings.items():
             setattr(self, key, string)

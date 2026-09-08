@@ -12,7 +12,9 @@ from <app_name> import logger
 from <app_name>.buttons import ButtonFrame, IconButton
 from <app_name>.config import config, FIELDS
 from <app_name>.constants import APP_TITLE
+from <app_name>.state import state
 from <app_name>.text import Text
+
 
 txt = Text()
 
@@ -21,49 +23,23 @@ class ConfigFrame:
     """
     A configuration dialog for editing application settings.
     """
-
-    data_directory: tk.StringVar
-    my_int: tk.IntVar
-    my_bool: tk.BooleanVar
-
     def __init__(self, parent: tk.Frame) -> None:
         self.root = tk.Toplevel(parent.root)
         self.parent = parent
         self.dialog_opened = False
         self.save_button = None
 
-        # tk variables and trace
-        for field, field_info in FIELDS.items():
-            if field_info.type is tk.StringVar:
-                setattr(self, field, self._stringvar(getattr(config, field)))
-            elif field_info.type is tk.IntVar:
-                setattr(self, field, self._intvar(getattr(config, field)))
-            elif field_info.type is tk.BooleanVar:
-                setattr(self, field, self._boolvar(getattr(config, field))
+        # Assign tk variables and check for changes
+        config.assign_tk_variables(self, FIELDS, self._check_value_changed)
 
         self._show()
-
-    def _stringvar(self, value: str) -> tk.StringVar:
-        stringvar = tk.StringVar(value=value)
-        stringvar.trace_add("write", self._check_value_changed)
-        return stringvar
-
-    def _intvar(self, value: int) -> tk.IntVar:
-        intvar = tk.IntVar(value=value)
-        intvar.trace_add("write", self._check_value_changed)
-        return intvar
-
-    def _boolvar(self, value: bool) -> tk.BooleanVar:
-        boolvar = tk.BooleanVar(value=value)
-        boolvar.trace_add("write", self._check_value_changed)
-        return boolvar
 
     def _show(self) -> None:
         """
         Initialize and display the configuration form GUI.
         """
         root = self.root
-        root.geometry(config.geometry[Path(__file__).stem])
+        root.geometry(state.geometry[Path(__file__).stem])
         root.transient(self.parent.root)
         root.title(f"{APP_TITLE} - {txt.CONFIG}")
 
@@ -71,7 +47,7 @@ class ConfigFrame:
         root.bind("<Control-s>", self._save_config)
         root.bind(
             "<Configure>",
-            lambda e: window_resize(root, __file__, config),
+            lambda e: window_resize(root, __file__, state),
         )
 
         root.bind("<FocusIn>", self._set_config)
@@ -103,7 +79,9 @@ class ConfigFrame:
         entry = ttk.Entry(frame, textvariable=self.data_directory)
         entry.grid(row=row, column=1, sticky=tk.EW)
 
-        button = IconButton(frame, txt.OPEN, "open", self._get_data_directory)
+        button = IconButton(
+            frame, txt.OPEN, "open-folder", self._get_data_directory
+        )
         button.grid(row=row, column=2, padx=PAD)
 
         return frame

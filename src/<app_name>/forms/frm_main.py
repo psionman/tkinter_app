@@ -12,6 +12,7 @@ from <app_name>.buttons import ButtonFrame
 from <app_name>.config import config
 from <app_name>.constants import APP_TITLE
 from <app_name>.main_menu import MainMenu
+from <app_name>.state import state
 from <app_name>.text import Text
 
 
@@ -33,7 +34,7 @@ class AppFrame():
 
     def _show(self):
         root = self.root
-        root.geometry(config.geometry[Path(__file__).stem])
+        root.geometry(state.geometry[Path(__file__).stem])
         root.title(APP_TITLE)
 
         main_menu = MainMenu(self)
@@ -57,7 +58,7 @@ class AppFrame():
         root.bind('<Control-o>', self._process)
         root.bind(
             "<Configure>",
-            lambda e: window_resize(root, __file__, config),
+            lambda e: window_resize(root, __file__, state),
         )
 
     def _main_frame(self, master: tk.Frame) -> ttk.Frame:

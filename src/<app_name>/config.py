@@ -2,10 +2,7 @@
 
 """Config for <app_title>."""
 
-import tkinter as tk
-from dataclasses import dataclass
-
-from psiconfig import TomlConfig
+from psiconfig import ConfigField, TomlConfig
 
 from <app_name>.constants import CONFIG_PATH, USER_DATA_DIR
 
