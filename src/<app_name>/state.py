@@ -9,6 +9,7 @@ DEFAULT_GEOMETRY = {
     "frm_main": "500x600",
     "frm_config": "700x300",
 }
+DEFAULT_SIZE = "500x500"
 
 
 class State:
@@ -27,6 +28,9 @@ class State:
         self.geometry = data.get("geometry", DEFAULT_GEOMETRY)
         if not self.geometry:
             self.geometry = DEFAULT_GEOMETRY
+
+    def get_geometry(self, module_path: str) -> str:
+        return self.geometry.get(Path(module_path).stem, DEFAULT_SIZE)
 
     def serialize(self):
         return {

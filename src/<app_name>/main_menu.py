@@ -75,7 +75,7 @@ class MainMenu:
             )
 
     def _show_data_directory(self):
-        dir = f"{txt.DATA_DIRECTORY}: {config.data_directory:<{SPACES}}"
+        dir = f"{txt.DATA_DIRECTORY}: {str(config.data_directory):<{SPACES}}"
         messagebox.showinfo(title=txt.DATA_DIRECTORY, message=dir)
 
     def _show_about(self):

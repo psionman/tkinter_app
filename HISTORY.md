@@ -1,5 +1,8 @@
 # History
 
+## Version 0.0.0a24 27 September 2026
+1. Fix geometry handling
+
 ## Version 0.0.0a23 8 September 2026
 1. Fix omissions and inconsistencies
 

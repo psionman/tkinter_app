@@ -39,7 +39,7 @@ class ConfigFrame:
         Initialize and display the configuration form GUI.
         """
         root = self.root
-        root.geometry(state.geometry[Path(__file__).stem])
+        root.geometry(state.get_geometry(__file__))
         root.transient(self.parent.root)
         root.title(f"{APP_TITLE} - {txt.CONFIG}")
 

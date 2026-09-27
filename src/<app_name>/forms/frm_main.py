@@ -34,7 +34,7 @@ class AppFrame():
 
     def _show(self):
         root = self.root
-        root.geometry(state.geometry[Path(__file__).stem])
+        root.geometry(state.get_geometry(__file__))
         root.title(APP_TITLE)
 
         main_menu = MainMenu(self)
