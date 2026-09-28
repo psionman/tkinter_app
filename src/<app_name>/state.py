@@ -1,8 +1,10 @@
 # state.py
-import tomllib
 from pathlib import Path
+from time import sleep
 
 import tomli_w
+import tomllib
+
 from <app_name>.constants import STATE_DIR
 
 DEFAULT_GEOMETRY = {
@@ -41,6 +43,7 @@ class State:
         }
 
     def save(self):
+        sleep(0.001)  # prevent judder
         data = self.serialize()
         state_file = Path(STATE_DIR, "state.toml")
         if not state_file.parent.exists():

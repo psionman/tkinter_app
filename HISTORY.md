@@ -1,5 +1,8 @@
 # History
 
+## Version 0.0.0a26 28 September 2026
+1. Add sleep to state save to prevent judder
+
 ## Version 0.0.0a25 28 September 2026
 1. Fix state file creation if not present
 
