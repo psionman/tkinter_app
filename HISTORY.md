@@ -1,5 +1,8 @@
 # History
 
+## Version 0.0.0a25 28 September 2026
+1. Fix state file creation if not present
+
 ## Version 0.0.0a24 27 September 2026
 1. Fix geometry handling
 

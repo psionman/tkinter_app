@@ -24,7 +24,10 @@ class State:
             with open(state_file, "rb") as f:
                 data = tomllib.load(f)
         except FileNotFoundError:
+            state_file.parent.mkdir(parents=True, exist_ok=True)
+            state_file.touch()
             data = {}
+
         self.geometry = data.get("geometry", DEFAULT_GEOMETRY)
         if not self.geometry:
             self.geometry = DEFAULT_GEOMETRY
