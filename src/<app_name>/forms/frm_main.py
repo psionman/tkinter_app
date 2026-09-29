@@ -71,7 +71,7 @@ class AppFrame():
     def _button_frame(self, master: tk.Frame) -> tk.Frame:
         frame = ButtonFrame(master, tk.HORIZONTAL)
         frame.buttons = self._frame_buttons(frame)
-        frame.enable(False)
+        frame.disable()
         return frame
 
     def _frame_buttons(self, frame: ButtonFrame) -> list[IconButton]:

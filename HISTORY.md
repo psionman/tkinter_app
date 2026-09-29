@@ -1,5 +1,8 @@
 # History
 
+## Version 0.0.0a27 29 September 2026
+1. replace enable(False) with disable()
+
 ## Version 0.0.0a26 28 September 2026
 1. Add sleep to state save to prevent judder
 
