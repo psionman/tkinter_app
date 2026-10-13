@@ -1,5 +1,8 @@
 # History
 
+## Version 0.0.0a28 13 October 2026
+1. Fix constants.py path handling
+
 ## Version 0.0.0a27 29 September 2026
 1. replace enable(False) with disable()
 
@@ -90,4 +93,3 @@
 
 ## version 0.0.0a1 25 June 2026
 1. Prepare for git install
-

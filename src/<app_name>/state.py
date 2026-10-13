@@ -1,9 +1,9 @@
 # state.py
+import tomllib
 from pathlib import Path
 from time import sleep
 
 import tomli_w
-import tomllib
 
 from <app_name>.constants import STATE_DIR
 

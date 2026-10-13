@@ -14,18 +14,13 @@ HTML_DIR = resolve_path('html', __file__)
 HELP_URI = ''
 
 # Paths
-CONFIG_PATH = Path(user_config_dir(__app_name__, __author__), 'config.toml')
-USER_DATA_DIR = Path(user_data_dir(__app_name__, __author__))
-USER_DATA_DIR.mkdir(exist_ok=True)
-USER_DATA_FILE = Path(USER_DATA_DIR, 'data.json') 
-STATE_DIR = user_state_dir(__app_name__, __author__)
-
-# Paths
 CONFIG_PATH = Path(user_config_dir(__app_name__, __author__), "config.toml")
 USER_DATA_DIR = Path(user_data_dir(__app_name__, __author__))
-USER_DATA_FILE = "data.json"
+USER_DATA_DIR.mkdir(exist_ok=True)
+USER_DATA_FILE = Path(USER_DATA_DIR, 'data.json')
+STATE_DIR = user_state_dir(__app_name__, __author__)
 HOME = str(Path.home())
-ICON_DIR = f"{Path(__file__).parent}/icons/"
+ICON_DIR = f"{Path(__file__).parent}/assets/icons/"
 
 # Buttons and text
 PSIUTILS_DIR = user_data_dir("psiutils", __author__)
