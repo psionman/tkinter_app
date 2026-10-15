@@ -10,6 +10,7 @@ requires-python = ">=3.13"
 dependencies = [
     "clipboard>=0.0.4",
     "dotenv>=0.9.9",
+    "platformdirs>=4.13.0",
     "psiutils>=1.0.2",
 ]
 

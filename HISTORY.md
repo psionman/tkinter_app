@@ -1,5 +1,9 @@
 # History
 
+## Version 0.0.0a29 15 October 2026
+1. Add platformdirs dependency
+2. Add icon.png path to constants
+
 ## Version 0.0.0a28 13 October 2026
 1. Fix constants.py path handling
 

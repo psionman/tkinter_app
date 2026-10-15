@@ -21,6 +21,7 @@ USER_DATA_FILE = Path(USER_DATA_DIR, 'data.json')
 STATE_DIR = user_state_dir(__app_name__, __author__)
 HOME = str(Path.home())
 ICON_DIR = f"{Path(__file__).parent}/assets/icons/"
+ICON_FILE = Path(ICON_DIR, "icon.png")
 
 # Buttons and text
 PSIUTILS_DIR = user_data_dir("psiutils", __author__)
@@ -31,5 +32,4 @@ TEXT_FILE = Path(PSIUTILS_DIR, "text", "text.json")
 
 # GUI
 APP_TITLE = '<app_title>'
-ICON_FILE = Path(Path(__file__).parent, 'images', 'icon.png')
 DEFAULT_GEOMETRY = "300x250"
