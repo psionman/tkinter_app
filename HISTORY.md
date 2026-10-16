@@ -1,5 +1,8 @@
 # History
 
+## Version 0.0.0a30 16 October 2026
+1. fix problems in frm_config
+
 ## Version 0.0.0a29 15 October 2026
 1. Add platformdirs dependency
 2. Add icon.png path to constants

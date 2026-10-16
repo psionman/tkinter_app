@@ -10,7 +10,7 @@ from psiutils.utilities import window_resize
 
 from <app_name> import logger
 from <app_name>.buttons import ButtonFrame, IconButton
-from <app_name>.config import config, FIELDS
+from <app_name>.config import config, FIELDS, save_config
 from <app_name>.constants import APP_TITLE
 from <app_name>.state import state
 from <app_name>.text import Text
@@ -50,7 +50,7 @@ class ConfigFrame:
             lambda e: window_resize(root, __file__, state),
         )
 
-        root.bind("<FocusIn>", self._set_config)
+        # root.bind("<FocusIn>", self._set_config)
 
         root.rowconfigure(1, weight=1)
         root.columnconfigure(0, weight=1)
@@ -130,6 +130,7 @@ class ConfigFrame:
         for field in FIELDS:
             config.update(field, getattr(self, field).get())
 
+        save_config(config)
         logger.info("Config saved", changes=changes)
         self.save_button.disable()
         self._dismiss()
