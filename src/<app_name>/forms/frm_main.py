@@ -6,11 +6,11 @@ from pathlib import Path
 from tkinter import ttk
 
 from psiutils.constants import PAD
-from psiutils.utilities import window_resize
+from psiutils.utilities import restore_geometry, window_resize
 
 from <app_name>.buttons import ButtonFrame, IconButton
 from <app_name>.config import config
-from <app_name>.constants import APP_TITLE
+from <app_name>.constants import APP_TITLE, DEFAULT_GEOMETRY
 from <app_name>.main_menu import MainMenu
 from <app_name>.state import state
 from <app_name>.text import Text
@@ -34,7 +34,7 @@ class AppFrame():
 
     def _show(self):
         root = self.root
-        root.geometry(state.get_geometry(__file__))
+        restore_geometry(root, state, __file__, default=DEFAULT_GEOMETRY)
         root.title(APP_TITLE)
 
         main_menu = MainMenu(self)

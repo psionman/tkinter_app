@@ -6,12 +6,12 @@ from pathlib import Path
 from tkinter import filedialog, ttk
 
 from psiutils.constants import PAD
-from psiutils.utilities import window_resize
+from psiutils.utilities import restore_geometry, window_resize
 
 from <app_name> import logger
 from <app_name>.buttons import ButtonFrame, IconButton
 from <app_name>.config import config, FIELDS, save_config
-from <app_name>.constants import APP_TITLE
+from <app_name>.constants import APP_TITLE, DEFAULT_GEOMETRY
 from <app_name>.state import state
 from <app_name>.text import Text
 
@@ -39,7 +39,7 @@ class ConfigFrame:
         Initialize and display the configuration form GUI.
         """
         root = self.root
-        root.geometry(state.get_geometry(__file__))
+        restore_geometry(root, state, __file__, default=DEFAULT_GEOMETRY)
         root.transient(self.parent.root)
         root.title(f"{APP_TITLE} - {txt.CONFIG}")
 
