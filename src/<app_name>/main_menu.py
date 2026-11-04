@@ -58,25 +58,20 @@ class MainMenu:
     def _help_menu_items(self) -> list:
         return [
             MenuItem(f"{txt.ONLINE_HELP}{txt.ELLIPSIS}", self._show_help),
-            MenuItem(
-                f"{txt.DATA_DIRECTORY} location{txt.ELLIPSIS}",
-                self._show_data_directory,
-            ),
             MenuItem(f"{txt.ABOUT}{txt.ELLIPSIS}", self._show_about),
         ]
 
     def _show_help(self):
         """Open online help in default browser."""
+        if not HELP_URI:
+            messagebox.showwarning("Online help", "No online help available")
+            return
         try:
             webbrowser.open(HELP_URI)
         except Exception as e:
             messagebox.showwarning(
                 "Help Error", f"Could not open help page:\n{e}"
             )
-
-    def _show_data_directory(self):
-        dir = f"{txt.DATA_DIRECTORY}: {str(config.data_directory):<{SPACES}}"
-        messagebox.showinfo(title=txt.DATA_DIRECTORY, message=dir)
 
     def _show_about(self):
         about = (

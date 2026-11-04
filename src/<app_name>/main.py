@@ -15,9 +15,8 @@ from psiutils.utilities import display_icon
 
 from <app_name> import __version__, logger, __app_name__
 from <app_name>.constants import ICON_FILE, APP_TITLE
+from <app_name>.forms.frm_main import AppFrame
 from <app_name>.module_caller import ModuleCaller
-
-from forms.frm_main import AppFrame
 
 from <app_name> import logger
 

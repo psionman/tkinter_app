@@ -80,7 +80,7 @@ class ConfigFrame:
         entry.grid(row=row, column=1, sticky=tk.EW)
 
         button = IconButton(
-            frame, txt.OPEN, "open-folder", self._get_data_directory
+            frame, txt.BROWSE, "open-folder", self._get_data_directory
         )
         button.grid(row=row, column=2, padx=PAD)
 
