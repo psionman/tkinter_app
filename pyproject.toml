@@ -1,7 +1,7 @@
 [project]
 name = "<app_name>"
 version = "0.0.0"
-description = "Basic tkinter app - add your description here"
+description = "Application for <app_title>"
 authors = [
     {name = "Jeff Watkins", email = "jeffwatkins2000@gmail.com"}
 ]

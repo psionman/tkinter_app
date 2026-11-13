@@ -2,7 +2,6 @@
 
 """AppFrame for <app_title>."""
 import tkinter as tk
-from pathlib import Path
 from tkinter import ttk
 
 from psiutils.constants import PAD
@@ -14,7 +13,6 @@ from <app_name>.constants import APP_TITLE, DEFAULT_GEOMETRY
 from <app_name>.main_menu import MainMenu
 from <app_name>.state import state
 from <app_name>.text import Text
-
 
 txt = Text()
 

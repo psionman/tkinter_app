@@ -1,5 +1,9 @@
 # History
 
+## Version 0.0.0a32 13 November 2026
+1. Add <app_title> to pyproject.toml description
+2. Remove geometry from config
+
 ## Version 0.0.0a32 4 November 2026
 1. Add BROWSE text to config dialog
 2. Add Online help warningto help menu

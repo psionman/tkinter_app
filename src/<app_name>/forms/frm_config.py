@@ -1,5 +1,5 @@
 # forms/frm_config.py
-"""ConfigFrame for <app_title>.."""
+"""ConfigFrame for <app_title>."""
 
 import tkinter as tk
 from pathlib import Path

@@ -6,7 +6,6 @@ from psiconfig import ConfigField, TomlConfig
 
 from <app_name>.constants import CONFIG_PATH, USER_DATA_DIR
 
-
 # FIELDS for config, and to create tkinter variables in frm_config.py
 # e.g. self.data_directory is a tk.StringVar
 FIELDS = {
@@ -14,10 +13,6 @@ FIELDS = {
 }
 
 DEFAULT_CONFIG = {
-    "geometry": {
-        "frm_main": "500x600",
-        "frm_config": "700x300",
-    },
 }
 
 for name, field in FIELDS.items():
